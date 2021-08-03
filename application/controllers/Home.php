@@ -7,12 +7,15 @@ class Home extends AUTH_Controller {
 		$this->load->model('M_pegawai');
 		$this->load->model('M_posisi');
 		$this->load->model('M_kota');
+		$this->load->model('Mteam');
 	}
 
-	public function index() {
-		$data['jml_pegawai'] 	= $this->M_pegawai->total_rows();
-		$data['jml_posisi'] 	= $this->M_posisi->total_rows();
-		$data['jml_kota'] 		= $this->M_kota->total_rows();
+	public function index($start='',$end='') {
+
+		$data['jml_acc'] 	= $this->Mteam->total_surat('Acc',$start,$end);
+		$data['jml_belum'] 	= $this->Mteam->total_surat('',$start,$end);
+		$data['jml_tolak'] 	= $this->Mteam->total_surat('Tolak',$start,$end);
+		$data['jml_tk'] 		= $this->Mteam->total_surat('TK',$start,$end);
 		$data['userdata'] 		= $this->userdata;
 
 		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');

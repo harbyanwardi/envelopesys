@@ -5,7 +5,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="img-circle" alt="User Image">
+        <img src="<?php echo base_url(); ?>assets/img/profil1.jpg" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p><?php echo $userdata->nama; ?></p>
@@ -31,26 +31,7 @@
           <span>Buat Surat</span>
         </a>
       </li>
-      <li <?php if ($page == 'pegawai') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Pegawai'); ?>">
-          <i class="fa fa-user"></i>
-          <span>Data Pegawai</span>
-        </a>
-      </li>
-
-      <li <?php if ($page == 'posisi') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Posisi'); ?>">
-          <i class="fa fa-briefcase"></i>
-          <span>Data Posisi</span>
-        </a>
-      </li>
       
-      <li <?php if ($page == 'kota') {echo 'class="active"';} ?>>
-        <a href="<?php echo base_url('Kota'); ?>">
-          <i class="fa fa-location-arrow"></i>
-          <span>Data Kota</span>
-        </a>
-      </li>
     </ul>
     <!-- /.sidebar-menu -->
   </section>

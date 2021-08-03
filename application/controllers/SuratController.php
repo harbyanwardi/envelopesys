@@ -45,10 +45,10 @@ class SuratController extends AUTH_Controller {
 				    'tanggal' => $tgl,
 				    'nama'	  => $data->nama,
 				    'tujuan'  => $data->tujuan,
-				    'no' => $data->nomor_surat,
+				    'no' => '- '.$data->nomor_surat,
 				]);
 
-				header("Content-Disposition: attachment; filename=suratlapas.docx");
+				header("Content-Disposition: attachment; filename=PERMOHONAN JC A.N $data->nama.docx");
 
 				$templateProcessor->saveAs('php://output');
 	}
@@ -91,27 +91,40 @@ class SuratController extends AUTH_Controller {
 	public function update() {
 		$id = trim($_POST['id']);
 		$where = array('id'=>$id);
-		$data['dataTeam'] = $this->Mteam->select_by_id("surat",$where);
+		$data['dataSurat'] = $this->Mteam->select_by_id("surat",$where);
 		$data['userdata'] = $this->userdata;
 
-		echo show_my_modal('modals/modal_update_team', 'update-team', $data);
+		echo show_my_modal('modals/modal_update_surat', 'update-surat', $data);
+	}
+
+	public function detail() {
+		$id = trim($_POST['id']);
+		$where = array('id'=>$id);
+		$data['dataSurat'] = $this->Mteam->select_by_id("surat",$where);
+		$data['userdata'] = $this->userdata;
+
+		echo show_my_modal('modals/modal_detail_surat', 'detail-surat', $data);
 	}
 
 	public function prosesUpdate() {
-		$this->form_validation->set_rules('name_team', 'Nama Team', 'trim|required');
-		$this->form_validation->set_rules('established', 'Tahun Berdiri', 'trim|required');
-		$this->form_validation->set_rules('city_basecamp', 'Asal Kota', 'trim|required');
-		$this->form_validation->set_rules('address_basecamp', 'Alamat Basecamp', 'trim|required');
+		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'trim|required');
+		$this->form_validation->set_rules('nama', 'Nama Penerima', 'trim|required');
+		$this->form_validation->set_rules('tujuan', 'Tujuan', 'trim|required');
+		$this->form_validation->set_rules('tanggal_surat', 'Tanggal Surat', 'trim|required');
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			
 			$where = array('id' => $data["id"]);
 			$data_insert = array(
-				"name_team" => $data["name_team"],
-				"established" => $data["established"],
-				"city_basecamp" => $data["city_basecamp"],
-				"address_basecamp" => $data["address_basecamp"],
+				"nomor_surat" => $data["nomor_surat"],
+				"nama" => $data["nama"],
+				"tujuan" => $data["tujuan"],
+				"tanggal_surat" => $data["tanggal_surat"],
+				"tanggal_pengembalian_surat" => $data["tanggal_pengembalian_surat"],
+				"tanggal_pengembalian_tanda" => $data["tanggal_pengembalian_tanda"], 
+				"ket_diterima" => $data["ket_diterima"],
+				"keterangan" => $data['keterangan']
 			);
 
 			$result = $this->Mteam->update("surat",$data_insert,$where);

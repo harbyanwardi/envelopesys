@@ -4,5 +4,5 @@
 		Dashboard Admin
 	</div>
 	<!-- Default to the left -->
-	<strong>Copyright &copy; 2021 <a href="#">Harby Anwardi</a>.</strong> All rights reserved.
+	<strong>Copyright &copy; 2021 <a href="https://www.instagram.com/jokingoding">Harby Anwardi</a>.</strong> All rights reserved.
 </footer>

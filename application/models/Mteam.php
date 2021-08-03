@@ -83,6 +83,26 @@ class Mteam extends CI_Model {
 
 		return $data->num_rows();
 	}
+
+	public function total_surat($ket,$start,$end) {
+		if($start !='' && $end != ''){
+			$where = "and tanggal_surat >='{$start}' and tanggal_surat <='{$end}'";
+		}
+		elseif ($start !='' && $end == '') {
+			$where = "and tanggal_surat >='{$start}'";
+		}
+		elseif ($start =='' && $end != '') {
+			$where = "and tanggal_surat <='{$end}'";
+		}
+		else{
+			$where = '';
+		}
+		$sql = "SELECT * FROM surat WHERE ket_diterima = '{$ket}' {$where}";
+
+		$data = $this->db->query($sql);
+
+		return $data->num_rows();
+	}
 }
 
 /* End of file M_pegawai.php */
